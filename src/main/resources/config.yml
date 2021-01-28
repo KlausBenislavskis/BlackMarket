@@ -1,0 +1,62 @@
+###############################################################################################################################
+#                                     PlaceHolderi:                                                                           #
+# 1) Cenam                                                                                                                    #
+#     %blackmarket_price_rare%        -cena rare displayotai lietai                                                           #
+#     %blackmarket_price_legendary%   -cena legendary displayotai lietai                                                      #
+#     %blackmarket_price_common%      -cena common displayotai lietai                                                         #
+#                                                                                                                             #
+# 2) Cooldowni                                                                                                                #
+#     %blackmarket_cooldown_rare%     -cooldowns  ja ir rare itemam(vins nav static saruk)                                    #
+#     %blackmarket_cooldown_legendary%-cooldowns  ja ir legendary itemam(vins nav static saruk)                               #
+#     %blackmarket_cooldown_common%   -cooldowns  ja ir common itemam(vins nav static saruk)                                  #
+#                                                                                                                             #
+###############################################################################################################################
+messages:
+  unknown-command: "&4[!] &cUnknown command. Type \"&4/help&c\" for help."
+  no-permission: "&cYou do not have permissions to use this command!"
+  no-money: '&4[!] &cYou don''t have enough money to buy this item.'
+lores:
+  rareOnCooldown:
+    - ' '
+    - "&4 This item is on Cooldown still"
+    - "&4 Cooldown Left : %blackmarket_cooldown_rare%"
+    - ' '
+  rareNoCooldown:
+    - ' '
+    - "&2 You can buy this item for price "
+    - "&2 price: %blackmarket_price_rare%"
+    - ' '
+  legendaryOnCooldown:
+    - ' '
+    - "&4 This legendary  item is on Cooldown still"
+    - "&4 Cooldown Left : %blackmarket_cooldown_legendary%"
+    - ' '
+  legendaryNoCooldown:
+    - ' '
+    - "&2 This legendary  item is not on cooldown"
+    - "&2 price : %blackmarket_price_legendary%"
+    - ' '
+  commonCooldown:
+    - ' '
+    - "&4 This item is  on cooldown"
+    - "&4 price : %blackmarket_cooldown_common%"
+    - ' '
+  commonNoCooldown:
+    - ' '
+    - "&2 You can buy this item for price "
+    - "&2 price: %blackmarket_price_common%"
+    - ' '
+Cooldown:
+  rare: 20
+  legendary: 50
+  common: 10
+prices:
+  rare:
+  legendary:
+  common:
+RareItems:
+  amount: 0
+CommonItems:
+  amount: 0
+LegendaryItems:
+  amount: 0

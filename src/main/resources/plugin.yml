@@ -1,0 +1,10 @@
+name: BlackMarket
+version: ${project.version}
+main: sapnisdevelopment.blackmarket.BlackMarket
+authors: [ SapnisDevelopment ]
+description: BlackMarket for side
+website: www.side.lv
+depend: [PlaceholderAPI]
+commands:
+  blackmarket:
+    description: Main plugin command
