@@ -55,6 +55,7 @@ public class MenuItems
   public static ItemStack rareItem = istaisLoreRare.clone();
   public static ItemStack legendaryItem = istaisLoreLegendary.clone();
   public static ItemStack commonItem = istaisLoreCommon.clone();
+  public static ItemStack infoBook = new ItemStack(Material.BOOK, 1);
 
   public MenuItems(Player player)
   {
@@ -87,12 +88,27 @@ public class MenuItems
     brownPane.setItemMeta(itemMeta);
 
     itemMeta = orangeWool.getItemMeta();
-    itemMeta.setDisplayName(" ");
+    itemMeta.setDisplayName(ColorUtils.color(BlackMarket.getInstance().getConfig().getString("names.orangeWool")));
     orangeWool.setItemMeta(itemMeta);
 
     itemMeta = brownGlass.getItemMeta();
-    itemMeta.setDisplayName(" ");
+    itemMeta.setDisplayName(ColorUtils.color(BlackMarket.getInstance().getConfig().getString("names.brownGlass")));
     brownGlass.setItemMeta(itemMeta);
+
+    itemMeta = goldBlock.getItemMeta();
+    itemMeta.setDisplayName(ColorUtils.color(BlackMarket.getInstance().getConfig().getString("names.goldBlock")));
+    goldBlock.setItemMeta(itemMeta);
+
+    itemMeta = infoBook.getItemMeta();
+    itemMeta.setDisplayName(" ");
+    ja = new ArrayList<>();
+    for (String e : BlackMarket.getInstance().getConfig()
+        .getStringList("lores.infoBook"))
+    {
+      ja.add(PlaceholderAPI.setPlaceholders(player, ColorUtils.color(e)));
+    }
+    itemMeta.setLore(ja);
+    infoBook.setItemMeta(itemMeta);
 
     itemMeta = istaisLoreRare.getItemMeta();
     ja = new ArrayList<>();
@@ -240,65 +256,73 @@ public class MenuItems
 
   public static void buyItem(Player player, String type)
   {
-    long now = System.currentTimeMillis();
-    switch (type)
+    if (BlackMarket.BlackMarketActive)
     {
-      case "rare":
-        if (valdiCooldown(type, now))
-        {
-          if (economy.getBalance(player) >= Integer.parseInt(
-              (String) BlackMarket.getInstance().getConfig()
-                  .get("prices.rare." + rare)))
+      long now = System.currentTimeMillis();
+      switch (type)
+      {
+        case "rare":
+          if (valdiCooldown(type, now))
           {
-            economy.withdrawPlayer(player.getName(), Integer.parseInt(
+            if (economy.getBalance(player) >= Integer.parseInt(
                 (String) BlackMarket.getInstance().getConfig()
-                    .get("prices.rare." + rare)));
-            lastBuys.put(type, now);
-            player.getInventory().addItem(istaisLoreRare);
-            break;
+                    .get("prices.rare." + rare)))
+            {
+              economy.withdrawPlayer(player.getName(), Integer.parseInt(
+                  (String) BlackMarket.getInstance().getConfig()
+                      .get("prices.rare." + rare)));
+              lastBuys.put(type, now);
+              player.getInventory().addItem(istaisLoreRare);
+              break;
+            }
+            player.closeInventory();
+            player.sendMessage(Messages.get("no-money"));
           }
-          player.closeInventory();
-          player.sendMessage(Messages.get("no-money"));
-        }
-        break;
-      case "legendary":
-        if (valdiCooldown(type, now))
-        {
-          if (economy.getBalance(player) >= Integer.parseInt(
-              (String) BlackMarket.getInstance().getConfig()
-                  .get("prices.legendary." + legendary)))
-          {
-            economy.withdrawPlayer(player.getName(), Integer.parseInt(
-                (String) BlackMarket.getInstance().getConfig()
-                    .get("prices.legendary." + legendary)));
-            lastBuys.put(type, now);
-            player.getInventory().addItem(istaisLoreLegendary);
-            break;
-          }
-          player.closeInventory();
-          player.sendMessage(Messages.get("no-money"));
-        }
-        break;
-      case "common":
-        if (valdiCooldown(type, now))
-        {
-          if (economy.getBalance(player) >= Integer.parseInt(
-              (String) BlackMarket.getInstance().getConfig()
-                  .get("prices.common." + common)))
-          {
-            economy.withdrawPlayer(player.getName(), Integer.parseInt(
-                (String) BlackMarket.getInstance().getConfig()
-                    .get("prices.common." + common)));
-            lastBuys.put(type, now);
-            player.getInventory().addItem(istaisLoreCommon);
-            break;
-          }
-          player.closeInventory();
-          player.sendMessage(Messages.get("no-money"));
           break;
-        }
-    }
+        case "legendary":
+          if (valdiCooldown(type, now))
+          {
+            if (economy.getBalance(player) >= Integer.parseInt(
+                (String) BlackMarket.getInstance().getConfig()
+                    .get("prices.legendary." + legendary)))
+            {
+              economy.withdrawPlayer(player.getName(), Integer.parseInt(
+                  (String) BlackMarket.getInstance().getConfig()
+                      .get("prices.legendary." + legendary)));
+              lastBuys.put(type, now);
+              player.getInventory().addItem(istaisLoreLegendary);
+              break;
+            }
+            player.closeInventory();
+            player.sendMessage(Messages.get("no-money"));
+          }
+          break;
+        case "common":
+          if (valdiCooldown(type, now))
+          {
+            if (economy.getBalance(player) >= Integer.parseInt(
+                (String) BlackMarket.getInstance().getConfig()
+                    .get("prices.common." + common)))
+            {
+              economy.withdrawPlayer(player.getName(), Integer.parseInt(
+                  (String) BlackMarket.getInstance().getConfig()
+                      .get("prices.common." + common)));
+              lastBuys.put(type, now);
+              player.getInventory().addItem(istaisLoreCommon);
+              break;
+            }
+            player.closeInventory();
+            player.sendMessage(Messages.get("no-money"));
+            break;
+          }
+      }
 
+    }
+    else
+    {
+      player.sendMessage(Messages.get("currentlyDisabled"));
+      player.closeInventory();
+    }
   }
 
   public static String getPrices(String type)

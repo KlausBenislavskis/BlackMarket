@@ -3,6 +3,7 @@ package sapnisdevelopment.blackmarket.Utils;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import sapnisdevelopment.blackmarket.BlackMarket;
 
 import java.text.DecimalFormat;
 
@@ -59,6 +60,9 @@ public class Expansions extends PlaceholderExpansion {
     }
     if (identifier.equals("price_legendary")){
       return MenuItems.getPrices("legendary");
+    }
+    if (identifier.equals("active_for")){
+      return String.valueOf(BlackMarket.seconds);
     }
     return null;
   }

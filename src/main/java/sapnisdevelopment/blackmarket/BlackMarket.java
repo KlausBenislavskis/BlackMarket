@@ -17,6 +17,7 @@ public final class BlackMarket extends JavaPlugin
   private InventoryManager invManager;
   private static BlackMarket instance;
   public static boolean BlackMarketActive = false;
+  public static Long seconds;
   @Override public void onEnable()
   {
     instance = this;

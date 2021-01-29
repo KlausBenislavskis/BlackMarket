@@ -77,7 +77,8 @@ public class createInventory implements InventoryProvider
     contents.set(2, 6, ClickableItem.of(MenuItems.commonItem,e -> {
       if(e.isLeftClick() || e.isRightClick()) {
         MenuItems.buyItem(player,"common");}}));
-
+    //Info Book
+    contents.set(2, 0, ClickableItem.empty(MenuItems.infoBook));
   }
 
   @Override public void update(Player player, InventoryContents contents)
@@ -92,6 +93,7 @@ public class createInventory implements InventoryProvider
     contents.set(2, 2, ClickableItem.of(MenuItems.legendaryItem,e -> {
       if(e.isLeftClick() || e.isRightClick()) {
         MenuItems.buyItem(player,"legendary");}}));
+    contents.set(2, 0, ClickableItem.empty(MenuItems.infoBook));
   }
 
 }

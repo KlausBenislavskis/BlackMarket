@@ -9,12 +9,27 @@
 #     %blackmarket_cooldown_rare%     -cooldowns  ja ir rare itemam(vins nav static saruk)                                    #
 #     %blackmarket_cooldown_legendary%-cooldowns  ja ir legendary itemam(vins nav static saruk)                               #
 #     %blackmarket_cooldown_common%   -cooldowns  ja ir common itemam(vins nav static saruk)                                  #
-#                                                                                                                             #
+#     %blackmarket_active_for%        - cik ilgi blackmarket vel aktivs.                                                                                                                     #
 ###############################################################################################################################
 messages:
   unknown-command: "&4[!] &cUnknown command. Type \"&4/help&c\" for help."
   no-permission: "&cYou do not have permissions to use this command!"
   no-money: '&4[!] &cYou don''t have enough money to buy this item.'
+  enabled: '&4[!] &cYou enabled BlackMarket.'
+  disabled: '&4[!] &cYou disabled BlackMarket.'
+  currentlyDisabled: '&4[!] &cCurrently BlackMarket is disabled.'
+
+  no-items: '&4[!] &cYou need to add at least 2 items of each rarity to  BlackMarket to enable it.'
+  added: '&2[!] &cYou successfully add your item in hand to BlackMarket!'
+  usage: "&6[!] &7Blackmarket adding usage: &f/blackmarket add <legendary/rare/common> <price>"
+  help-command: |-
+    &8&m-----------------------------------------
+    &a/blackmarket help &7- Shows all blackmarket commands
+    &a/blackmarket enable &7- Enables Blackmarket
+    &a/blackmarket disable &7- Disables Blackmarket
+    &a/blackmarket add <rarity> <price> &7- Adds item in hand to blackmarket
+    &a/blackmarket <Player> &7- Opens BlackMarket
+    &8&m-----------------------------------------
 lores:
   rareOnCooldown:
     - ' '
@@ -46,6 +61,17 @@ lores:
     - "&2 You can buy this item for price "
     - "&2 price: %blackmarket_price_common%"
     - ' '
+  infoBook:
+    - ' '
+    - "&2 NexT time blackmarket will open at tommorow 19:00 "
+    - "&2 BlackMarket will be active for  %blackmarket_active_for% seconds"
+    - ' '
+names:
+  goldBlock: "&9 Legendary Item"
+  orangeWool: "&8 Rare Item"
+  brownGlass: "&2Common item"
+
+activeForMinutes: 1
 Cooldown:
   rare: 20
   legendary: 50
