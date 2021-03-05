@@ -2,12 +2,9 @@ package sapnisdevelopment.blackmarket.Utils;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 import sapnisdevelopment.blackmarket.BlackMarket;
 
 import java.text.DecimalFormat;
-
-import static org.bukkit.Statistic.*;
 
 public class Expansions extends PlaceholderExpansion {
   private final DecimalFormat timeFormat = new DecimalFormat("#0.0");

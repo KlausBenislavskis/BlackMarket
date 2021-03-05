@@ -218,6 +218,7 @@ public class MenuItems
       istaisLoreRare = ((ItemStack) BlackMarket.getInstance().getConfig()
           .get("RareItems." + rare));
       rareItem = istaisLoreRare.clone();
+
     }
     else
       updateRareItems();
@@ -247,7 +248,7 @@ public class MenuItems
       legendary = newNumber;
       istaisLoreLegendary = (ItemStack) BlackMarket.getInstance().getConfig()
           .get("LegendaryItems." + legendary);
-      legendaryItem = istaisLoreRare.clone();
+      legendaryItem = istaisLoreLegendary.clone();
 
     }
     else
